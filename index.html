@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>건설기계 표준부품 원가계산서 작업관리</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+:root{--b:#176fe7;--d:#073b82;--n:#122b52;--g:#0ca77c;--o:#f19a27;--p:#7352df;--bg:#f5f8fc;--line:#e4ebf4;--muted:#8a99ad}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--n);font-family:"Noto Sans KR",sans-serif;font-size:13px}button,input,select{font:inherit}button{cursor:pointer}
+.side{position:fixed;inset:0 auto 0 0;width:235px;background:linear-gradient(180deg,#073979,#0755b8);color:#fff;padding:22px 14px;z-index:10}.brand{display:flex;gap:10px;align-items:center;padding:0 8px 28px}.logo{width:42px;height:42px;border-radius:12px;background:#fff;color:var(--b);display:grid;place-items:center;font-weight:800}.brand b{font-size:12px;line-height:1.5}.brand small{display:block;color:#a9c8ee;font-size:8px}.nt{font-size:8px;color:#9fc1ec;margin:17px 8px 7px}.nav{width:100%;height:40px;border:0;background:transparent;color:#d9eaff;text-align:left;border-radius:8px;padding:0 11px;margin:2px 0;font-size:10px}.nav span{display:inline-block;width:24px;font-size:15px}.nav.active,.nav:hover{background:#1169dd;color:#fff}.role{position:absolute;left:14px;right:14px;bottom:18px;border:1px solid #4688d4;border-radius:9px;padding:11px;background:#002f7b55}.role small{display:block;color:#aac8ed;font-size:8px}.role b{display:block;font-size:10px;margin:3px 0 9px}.role button{width:100%;height:28px;background:transparent;border:1px solid #4a8bd7;color:#fff;border-radius:6px;font-size:8px}
+main{margin-left:235px}.top{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.top h1{font-size:19px;margin:0}.tr{display:flex;gap:18px;align-items:center}.notice{position:relative;border:0;background:none;font-size:18px;color:#174780}.notice i{position:absolute;right:-6px;top:-5px;background:#e84248;color:#fff;font:8px sans-serif;padding:3px 5px;border-radius:9px}.profile{display:flex;align-items:center;gap:8px}.avatar{width:34px;height:34px;border-radius:50%;background:#e7f1ff;color:var(--b);display:grid;place-items:center}.profile b{font-size:10px}.badge{display:block;color:var(--b);background:#edf5ff;border-radius:3px;padding:2px 5px;font-size:7px;margin-top:2px}
+.view{display:none;padding:24px 28px}.view.active{display:block}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:14px}.kpi{height:116px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 5px 20px #17467d0d;display:flex;align-items:center;gap:13px;padding:18px;transition:.25s}.kpi:hover{transform:translateY(-3px);box-shadow:0 12px 28px #17467d1b}.ki{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;flex:none}.blue{background:#e8f1ff;color:var(--b)}.green{background:#e6f8f2;color:var(--g)}.orange{background:#fff1df;color:var(--o)}.purple{background:#f0eaff;color:var(--p)}.kpi label{display:block;font-size:9px;font-weight:700}.kpi strong{font-size:28px}.kpi em{font-style:normal;font-size:9px}.kpi small{display:block;color:var(--muted);font-size:7px}
+.g3{display:grid;grid-template-columns:1.25fr 1.15fr .8fr;gap:14px;margin-bottom:14px}.g2{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-bottom:14px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px;box-shadow:0 5px 20px #17467d0d}.head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}.head h2{font-size:12px;margin:0 0 3px}.head p{font-size:8px;color:var(--muted);margin:0}.live{font-size:7px;color:var(--g);background:#e7f8f2;padding:4px 7px;border-radius:10px}
+.pie{height:205px;display:flex;align-items:center;justify-content:center;gap:22px}.donut{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--b) 0 39%,var(--g) 39% 61%,var(--o) 61% 72%,var(--p) 72%);display:grid;place-items:center;animation:pop .8s}.donut:after{content:"";position:absolute;width:105px;height:105px;background:#fff;border-radius:50%}.donut div{position:relative;z-index:1;text-align:center}.donut strong{display:block;font-size:24px}.donut small{font-size:8px;color:var(--muted)}.legend{width:170px}.legend div{display:grid;grid-template-columns:9px 1fr auto;gap:7px;align-items:center;margin:12px 0;font-size:9px}.dot{width:8px;height:8px;border-radius:50%}.legend b{font-size:8px}.legend small{color:var(--muted);font-weight:400}
+.chart{height:205px}.chart svg{width:100%;height:180px}.months{display:flex;justify-content:space-between;font-size:7px;color:#8998aa}.schedule h3{font-size:8px;margin:9px 0 6px}.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f3f7;font-size:8px}.row b{color:#63758e}.more{font-size:7px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;min-width:600px}th{text-align:left;color:#8b99ab;font-size:7px;padding:8px;border-bottom:1px solid var(--line)}td{font-size:8px;padding:9px 8px;border-bottom:1px solid #eff3f7}.scroll{overflow:auto}.tag{font-size:7px;border-radius:10px;padding:4px 7px;display:inline-block}.working{background:#e7f8f2;color:#078e6d}.request{background:#e8f1ff;color:#1269d6}.review{background:#fff1df;color:#d98620}.complete{background:#f0eaff;color:#7452d9}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick button{background:#fff;border:1px solid #e1e9f2;border-radius:9px;padding:12px;text-align:left;transition:.2s}.quick button:hover{transform:translateY(-2px);box-shadow:0 8px 18px #dce8f8}.quick span{color:var(--b);font-size:17px}.quick b{display:block;font-size:9px;margin:3px 0}.quick small{font-size:7px;color:var(--muted)}.process{display:flex;align-items:center;justify-content:space-around}.process div{text-align:center}.process span{width:35px;height:35px;border:2px solid #2580ed;color:var(--b);border-radius:50%;display:grid;place-items:center;margin:auto}.process b{display:block;font-size:8px;margin-top:5px}.process small{font-size:7px;color:var(--muted)}.process i{color:#7da7d8}
+.page-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.page-title h2{font-size:18px}.primary,.ghost{height:36px;padding:0 13px;border-radius:7px;font-size:9px;font-weight:700}.primary{background:var(--b);color:#fff;border:0}.ghost{background:#fff;color:var(--b);border:1px solid #dce6f1}.filters{display:flex;gap:8px;margin-bottom:14px}.filters input,.filters select{height:36px;border:1px solid #dce5f0;border-radius:7px;padding:0 10px}.drop{border:2px dashed #b8d1f3;border-radius:12px;padding:40px;text-align:center;color:var(--b);cursor:pointer}.drop small{color:var(--muted);font-size:8px}.files .file{display:flex;gap:16px;align-items:center;padding:13px 4px;border-bottom:1px solid #eef2f6;font-size:9px}.part-files{display:grid;grid-template-columns:1.15fr 1fr 1.6fr 150px;gap:14px;align-items:center;padding:14px 4px;border-bottom:1px solid #eef2f6}.part-files b{font-size:9px}.part-files small{display:block;color:var(--muted);font-size:7px;margin-top:4px}.part-files .stored{display:flex;gap:5px;flex-wrap:wrap}.file-chip{background:#edf5ff;color:#176fe7;border-radius:6px;padding:5px 7px;font-size:7px}.revision-row{display:grid;grid-template-columns:1.1fr 1fr 1.5fr 130px;gap:14px;align-items:center;padding:14px 4px;border-bottom:1px solid #eef2f6}.revision-row b{font-size:9px}.revision-row small{display:block;color:var(--muted);font-size:7px;margin-top:4px}.revision-files{display:flex;gap:5px;flex-wrap:wrap}.files .file small{color:var(--muted)}.files .file button{margin-left:auto}.work{display:grid;gap:10px}.wi{display:grid;grid-template-columns:1.25fr 160px 150px 1fr auto;gap:14px;align-items:center;border:1px solid #edf1f6;border-radius:9px;padding:13px}.wi select{display:block;width:100%;height:32px;border:1px solid #dce5f0;border-radius:6px;margin-top:4px;padding:0 8px;background:#fff}.filebox{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.filebox input[type=file]{display:none}.filebox label{display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid #d8e5f5;border-radius:6px;background:#f7fbff;color:var(--b);font-size:8px;cursor:pointer}.filecount{font-size:8px;color:var(--muted)}.wi small{display:block;color:var(--muted);font-size:8px;margin-top:4px}.wi label{font-size:7px;color:#71839a}.wi input{display:block;width:100%;height:32px;border:1px solid #dce5f0;border-radius:6px;margin-top:4px}.progress{height:7px;background:#eaf0f7;border-radius:5px;overflow:hidden}.progress span{display:block;height:100%;background:var(--b)}.user{display:flex;align-items:center;gap:18px;padding:14px;border-bottom:1px solid #eef2f6}.user small{display:block;color:var(--muted);font-size:8px}.perm{margin-left:auto;color:#71839a;font-size:8px}
+.modal{display:none;position:fixed;inset:0;background:#0b285a55;z-index:50;place-items:center}.modal.show{display:grid}.mbox{width:530px;background:#fff;border-radius:14px;padding:24px;box-shadow:0 25px 60px #0b285a44;animation:up .25s}.mbox h2{margin:0;font-size:17px}.mbox p{font-size:8px;color:var(--muted)}.close{float:right;border:0;border-radius:50%;width:28px;height:28px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.form label{font-size:8px;color:#63758e;font-weight:700}.form input{display:block;width:100%;height:37px;margin-top:5px;border:1px solid #dce5f0;border-radius:7px;padding:0 9px}.wide{grid-column:1/-1}.full{width:100%}.toast{position:fixed;right:22px;bottom:22px;background:#102a55;color:#fff;padding:11px 15px;border-radius:8px;font-size:9px;opacity:0;transform:translateY(12px);transition:.25s;z-index:100}.toast.show{opacity:1;transform:none}
+@keyframes pop{from{transform:scale(.7);opacity:.2}to{transform:scale(1);opacity:1}}@keyframes up{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@media(max-width:1200px){.part-files,.revision-row{grid-template-columns:1fr 1fr}.wi{grid-template-columns:1fr 160px 150px 1fr auto}}@media(max-width:760px){.part-files,.revision-row{grid-template-columns:1fr}.wi{grid-template-columns:1fr}}@media(max-width:1200px){.g3{grid-template-columns:1fr 1fr}.schedule{grid-column:1/-1}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.side{position:relative;width:100%;height:auto}.role{display:none}main{margin-left:0}.top{padding:0 14px}.view{padding:16px 12px}.kpis,.g3,.g2{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}.process{overflow:auto;justify-content:flex-start;gap:16px}.wi{grid-template-columns:1fr}.mbox{width:calc(100% - 24px)}.form{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<aside class="side">
+<div class="brand"><div class="logo">SP</div><div><b>건설기계 표준부품<br>원가계산서</b><small>작업 용역 수행 일정 관리</small></div></div>
+<div class="nt">MAIN</div><button class="nav active" data-v="dashboard"><span>⌂</span>대시보드</button>
+<div class="nt">작업 관리</div><button class="nav" data-v="requests"><span>▣</span>작업 요청 관리</button><button class="nav" data-v="work"><span>◷</span>작업 수행 관리</button>
+<div class="nt">파일 관리</div><button class="nav" data-v="outputs"><span>↥</span>산출물 관리</button><button class="nav" data-v="revisions"><span>↻</span>검토 / 수정 관리</button>
+<div class="nt">사용자 / 권한 관리</div><button class="nav" data-v="users"><span>♙</span>사용자 관리</button>
+<div class="role"><small>현재 로그인 역할</small><b id="role">작업 요청자</b><button id="switch">작업 수행자로 보기</button></div>
+</aside>
+<main>
+<header class="top"><h1 id="title">대시보드</h1><div class="tr"><button class="notice">♧<i>5</i></button><button class="notice">✉<i>12</i></button><div class="profile"><div class="avatar">●</div><div><b>홍길동님</b><small class="badge" id="badge">작업 요청자</small></div></div></div></header>
+
+<section id="dashboard" class="view active">
+<div class="kpis">
+<div class="kpi"><div class="ki blue">▣</div><div><label>총 산출 완료 건수</label><strong>128</strong>건<small>전체 완료 작업</small></div></div>
+<div class="kpi"><div class="ki green">↻</div><div><label>작업 진행 중</label><strong>36</strong>건<small>현재 수행 중인 작업</small></div></div>
+<div class="kpi"><div class="ki orange">◫</div><div><label>오늘 완료 예정</label><strong>8</strong>건<small>오늘 완료 예정 작업</small></div></div>
+<div class="kpi"><div class="ki purple">▤</div><div><label>산출물 총 개수</label><strong>245</strong>개<small>업로드된 모든 산출물</small></div></div>
+</div>
+<div class="g3">
+<article class="card"><div class="head"><div><h2>전체 작업 진행 현황</h2><p>현재 등록된 전체 작업 기준</p></div><span class="live">● LIVE</span></div><div class="pie"><div class="donut"><div><strong>164</strong><small>전체 건</small></div></div><div class="legend"><div><i class="dot" style="background:#176fe7"></i><span>요청</span><b>64건 <small>39%</small></b></div><div><i class="dot" style="background:#0ca77c"></i><span>작업 중</span><b>36건 <small>22%</small></b></div><div><i class="dot" style="background:#f19a27"></i><span>검토 / 수정</span><b>18건 <small>11%</small></b></div><div><i class="dot" style="background:#7352df"></i><span>완료</span><b>46건 <small>28%</small></b></div></div></div></article>
+<article class="card"><div class="head"><div><h2>월별 작업 완료 추이</h2><p>최근 6개월간 완료 건수</p></div><select><option>6개월</option><option>1년</option></select></div><div class="chart"><svg viewBox="0 0 520 180" preserveAspectRatio="none"><g stroke="#edf1f6"><line x2="520" y1="20" y2="20"/><line x2="520" y1="60" y2="60"/><line x2="520" y1="100" y2="100"/><line x2="520" y1="140" y2="140"/></g><polyline points="15,145 115,120 205,91 300,57 390,88 500,67" fill="none" stroke="#176fe7" stroke-width="3"/><g fill="#176fe7"><circle cx="15" cy="145" r="5"/><circle cx="115" cy="120" r="5"/><circle cx="205" cy="91" r="5"/><circle cx="300" cy="57" r="5"/><circle cx="390" cy="88" r="5"/><circle cx="500" cy="67" r="5"/></g></svg><div class="months"><span>12월</span><span>1월</span><span>2월</span><span>3월</span><span>4월</span><span>5월</span></div></div></article>
+<article class="card schedule"><div class="head"><div><h2>오늘의 일정</h2><p>완료 예정 및 진행 중</p></div></div><h3>🟢 완료 예정 (8)</h3><div class="row"><span>PN-250511-001</span><b>10:00</b></div><div class="row"><span>PN-250511-002</span><b>11:00</b></div><div class="row"><span>PN-250511-003</span><b>14:00</b></div><p class="more">외 5건</p><h3>🔵 진행 중 (5)</h3><div class="row"><span>PN-250511-004</span><b>김철수</b></div><div class="row"><span>PN-250511-005</span><b>이영희</b></div><p class="more">외 3건</p></article>
+</div>
+<div class="g2">
+<article class="card"><div class="head"><div><h2>최근 작업 요청 목록</h2></div><button class="ghost" data-vlink="requests">전체 보기</button></div><div class="scroll"><table><thead><tr><th>요청번호</th><th>품번</th><th>품명</th><th>요청일</th><th>희망 완료일</th><th>상태</th></tr></thead><tbody id="recent"></tbody></table></div></article>
+<article class="card"><div class="head"><div><h2>오늘 완료 예정 작업</h2></div></div><div class="scroll"><table><thead><tr><th>요청번호</th><th>품명</th><th>담당자</th><th>시간</th></tr></thead><tbody><tr><td>REQ-001</td><td>붐 실린더 브라켓</td><td>김철수</td><td>10:00</td></tr><tr><td>REQ-002</td><td>버킷 링크</td><td>이영희</td><td>11:00</td></tr><tr><td>REQ-003</td><td>모터 하우징</td><td>박민수</td><td>14:00</td></tr></tbody></table></div></article>
+</div>
+<article class="card" style="margin-bottom:14px"><div class="head"><h2>빠른 작업</h2></div><div class="quick"><button data-open="request"><span>＋</span><b>신규 작업 요청</b><small>새로운 작업 요청을 등록합니다.</small></button><button data-open="outputs"><span>↥</span><b>산출물 업로드</b><small>결과 파일을 업로드합니다.</small></button><button data-open="revisions"><span>✎</span><b>검토 / 수정 관리</b><small>수정본을 관리합니다.</small></button><button data-open="users"><span>♙</span><b>사용자 / 권한 관리</b><small>역할과 권한을 관리합니다.</small></button></div></article>
+<article class="card"><div class="head"><div><h2>업무 프로세스</h2><p>요청부터 최종 완료까지</p></div></div><div class="process"><div><span>▣</span><b>작업 요청</b><small>요청자가 등록</small></div><i>→</i><div><span>⚙</span><b>작업 수행</b><small>예상 완료일 입력</small></div><i>→</i><div><span>↥</span><b>산출물 제출</b><small>결과 파일 업로드</small></div><i>→</i><div><span>✎</span><b>검토 / 수정</b><small>요청자 검토</small></div><i>→</i><div><span>✓</span><b>최종 완료</b><small>완료 메일 발송</small></div></div></article>
+</section>
+
+<section id="requests" class="view"><div class="page-title"><h2>작업 요청 관리</h2><button class="primary" data-open="request">＋ 신규 작업 요청</button></div><article class="card"><div class="filters"><input id="search" placeholder="품번 / 품명 / 모델명 검색"></div><div class="scroll"><table><thead><tr><th>모델명</th><th>품번</th><th>품명</th><th>요청일</th><th>작업 요청 완료 일자</th><th>요청자 이메일</th><th>관리</th></tr></thead><tbody id="all"></tbody></table></div></article></section>
+
+<section id="work" class="view"><div class="page-title"><h2>작업 수행 관리</h2></div><article class="card"><p style="color:var(--muted);font-size:9px">작업 수행자는 예상 완료일과 진행 상태를 직접 수정하고, 하나의 품번에 여러 산출물 파일을 업로드할 수 있습니다.</p><div class="work">
+<div class="wi"><div><b>123456-100001 · 붐 실린더 브라켓</b><small>모델명: HX220A · 작업 요청 완료 일자 2026-08-15</small></div><label>예상 완료일<input type="date" value="2026-08-14"></label><label>진행 상태<select class="statusSelect"><option>작업중</option><option>요청</option><option>검토/수정</option><option>완료</option></select></label><div class="filebox"><input id="workFiles1" type="file" multiple><label for="workFiles1">＋ 여러 파일 선택</label><span class="filecount" id="workCount1">0개</span></div><button class="primary upload" data-target="workFiles1">산출물 업로드</button></div>
+<div class="wi"><div><b>123456-100002 · 버킷 링크</b><small>모델명: HX220A · 작업 요청 완료 일자 2026-08-18</small></div><label>예상 완료일<input type="date" value="2026-08-17"></label><label>진행 상태<select class="statusSelect"><option>작업중</option><option selected>요청</option><option>검토/수정</option><option>완료</option></select></label><div class="filebox"><input id="workFiles2" type="file" multiple><label for="workFiles2">＋ 여러 파일 선택</label><span class="filecount" id="workCount2">0개</span></div><button class="primary upload" data-target="workFiles2">산출물 업로드</button></div></div></article></section>
+
+<section id="outputs" class="view"><div class="page-title"><h2>산출물 관리</h2><button class="ghost" data-vlink="requests">작업 요청 목록 보기</button></div><article class="card"><div class="head"><div><h2>부품원가계산서 보관 목록</h2><p>작업 요청 관리와 동일한 품목 기준으로 품번별 산출물을 관리합니다.</p></div></div><div class="scroll"><table><thead><tr><th>품번</th><th>품명</th><th>모델명</th><th>작업 요청일</th><th>작업 요청 완료 일자</th><th>요청자 이메일</th><th>산출물</th></tr></thead><tbody id="outputTable"></tbody></table></div></article></section>
+
+<section id="revisions" class="view"><div class="page-title"><h2>검토 / 수정 관리</h2></div><article class="card"><div class="head"><div><h2>요청자 최종 검토 및 수정본 관리</h2><p>작업 요청 목록과 동일한 품목 기준으로 수정 이력과 수정본을 관리합니다.</p></div></div><div class="scroll"><div class="revision-row" style="font-weight:700;color:#8b99ab;font-size:7px"><div>품번 / 품명</div><div>모델명 · 요청일</div><div>수정본 파일</div><div>관리</div></div>
+<div class="revision-row"><div><b>123456-100001 · 붐 실린더 브라켓</b><small>수정 대기</small></div><div><b>HX220A</b><small>2026-08-08</small></div><div class="revision-files" id="revFiles1"><span class="file-chip">원가계산서.xlsx</span><span class="file-chip">산출근거.pdf</span></div><div class="filebox"><input id="revInput1" type="file" multiple><label for="revInput1">＋ 수정본 업로드</label><span class="filecount" id="revCount1">0개</span></div></div>
+<div class="revision-row"><div><b>123456-100004 · 메인 프레임</b><small>검토 완료</small></div><div><b>HX300A</b><small>2026-08-07</small></div><div class="revision-files" id="revFiles2"><span class="file-chip">최종원가.xlsx</span></div><div class="filebox"><input id="revInput2" type="file" multiple><label for="revInput2">＋ 수정본 업로드</label><span class="filecount" id="revCount2">0개</span></div></div></div></article></section>
+
+<section id="users" class="view"><div class="page-title"><h2>사용자 / 역할 · 권한 관리</h2></div><article class="card"><p style="font-size:9px;color:var(--muted)">작업 요청자가 작업 수행자에게 역할 또는 권한을 부여하는 영역입니다.</p><div class="user"><div><b>김철수</b><small>작업 수행자</small></div><span class="perm">산출물 업로드 · 작업 완료</span><button class="primary permBtn">권한 관리</button></div><div class="user"><div><b>이영희</b><small>작업 수행자</small></div><span class="perm">산출물 업로드 · 작업 완료</span><button class="primary permBtn">권한 관리</button></div></article></section>
+</main>
+<div class="modal" id="modal"><div class="mbox"><button class="close" id="close">×</button><h2>신규 작업 요청</h2><p>건설기계 표준부품원가계산서 작업을 등록합니다.</p><div class="form"><label>요청일자<input id="req" type="date"></label><label>작업 요청 완료 일자<input id="due" type="date"></label><label>품번<input id="part" placeholder="123456-123456" maxlength="13"></label><label>품명<input id="name" placeholder="부품명을 입력하세요"></label><label>모델명<input id="model" placeholder="예: HX220A"></label><label>요청자 이메일<input id="mail" type="email" placeholder="requester@company.com"></label></div><button class="primary full" id="save">작업 요청 등록</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const jobs=[
+{id:"REQ-001",part:"123456-100001",name:"붐 실린더 브라켓",model:"HX220A",date:"2026-08-08",due:"2026-08-15",status:"working",email:"requester@company.com",files:["원가계산서.xlsx","산출근거.pdf"]},
+{id:"REQ-002",part:"123456-100002",name:"버킷 링크",model:"HX220A",date:"2026-08-08",due:"2026-08-18",status:"request",email:"requester@company.com",files:["원가계산서.xlsx"]},
+{id:"REQ-003",part:"123456-100003",name:"회전 모터 하우징",model:"HX300A",date:"2026-08-07",due:"2026-08-14",status:"review",email:"requester@company.com",files:["원가계산서.xlsx","가공비근거.xlsx","검토자료.pdf"]},
+{id:"REQ-004",part:"123456-100004",name:"메인 프레임",model:"HX300A",date:"2026-08-07",due:"2026-08-20",status:"working",email:"requester@company.com",files:["원가계산서.xlsx"]},
+{id:"REQ-005",part:"123456-100005",name:"카운터 웨이트",model:"HW155A",date:"2026-08-06",due:"2026-08-13",status:"complete",email:"requester@company.com",files:["최종원가.xlsx","산출근거.pdf"]}
+],
+txt={working:"작업중",request:"요청",review:"검토/수정",complete:"완료"},
+$=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+
+function toast(t){let e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(window.t);window.t=setTimeout(()=>e.classList.remove("show"),2200)}
+function go(v){$$(".view").forEach(x=>x.classList.remove("active"));$("#"+v).classList.add("active");$$(".nav").forEach(x=>x.classList.toggle("active",x.dataset.v===v));$("#title").textContent={dashboard:"대시보드",requests:"작업 요청 관리",work:"작업 수행 관리",outputs:"산출물 관리",revisions:"검토 / 수정 관리",users:"사용자 / 역할 · 권한 관리"}[v];scrollTo({top:0,behavior:"smooth"})}
+$$(".nav").forEach(x=>x.onclick=()=>go(x.dataset.v));$$("[data-vlink]").forEach(x=>x.onclick=()=>go(x.dataset.vlink));
+
+function render(){
+  const rows=jobs.map(j=>`<tr><td>${j.id}</td><td>${j.part}</td><td>${j.name}</td><td>${j.date}</td><td>${j.due}</td><td><span class="tag ${j.status}">${txt[j.status]}</span></td></tr>`).join("");
+  $("#recent").innerHTML=rows;
+  filter();
+  renderOutputs();
+}
+function filter(){
+  const q=($("#search").value||"").toLowerCase();
+  $("#all").innerHTML=jobs.filter(j=>(!q||(j.part+" "+j.name+" "+j.model).toLowerCase().includes(q))).map(j=>`
+  <tr><td>${j.model}</td><td>${j.part}</td><td>${j.name}</td><td>${j.date}</td><td>${j.due}</td><td>${j.email}</td><td><button class="ghost edit">수정</button></td></tr>`).join("");
+}
+function renderOutputs(){
+  $("#outputTable").innerHTML=jobs.map((j,i)=>`
+  <tr>
+    <td><b>${j.part}</b></td><td>${j.name}</td><td>${j.model}</td><td>${j.date}</td><td>${j.due}</td><td>${j.email}</td>
+    <td>
+      <div class="stored">${(j.files||[]).map(f=>`<span class="file-chip">${f}</span>`).join("")}</div>
+      <div class="filebox" style="margin-top:7px">
+        <input id="out${i}" type="file" multiple>
+        <label for="out${i}">＋ 파일 추가</label>
+        <span class="filecount" id="outCount${i}">0개</span>
+      </div>
+    </td>
+  </tr>`).join("");
+  jobs.forEach((j,i)=>{const el=$("#out"+i);if(el)el.onchange=e=>{const fs=[...e.target.files];j.files=(j.files||[]).concat(fs.map(f=>f.name));$("#outCount"+i).textContent=fs.length+"개 선택";renderOutputs();toast(j.part+"에 "+fs.length+"개 산출물을 추가했습니다.");};});
+}
+$("#search").oninput=filter;
+
+$$("[data-open]").forEach(x=>x.onclick=()=>x.dataset.open==="request"?$("#modal").classList.add("show"):go(x.dataset.open));
+$("#close").onclick=()=>$("#modal").classList.remove("show");
+$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("show")};
+
+$("#part").oninput=e=>{
+  let v=e.target.value.replace(/[^0-9-]/g,"").replace(/-/g,"");
+  if(v.length>6)v=v.slice(0,6)+"-"+v.slice(6,12);
+  e.target.value=v;
+};
+
+$("#save").onclick=()=>{
+  const p=$("#part").value.trim(),n=$("#name").value.trim(),m=$("#model").value.trim(),mail=$("#mail").value.trim();
+  if(!/^\d{6}-\d{6}$/.test(p))return toast("품번은 123456-123456 형식으로 입력해주세요.");
+  if(!n||!m||!mail)return toast("품명, 모델명, 요청자 이메일을 입력해주세요.");
+  jobs.unshift({id:"REQ-"+Date.now().toString().slice(-5),part:p,name:n,model:m,date:$("#req").value,due:$("#due").value,status:"request",email:mail,files:[]});
+  render();$("#modal").classList.remove("show");
+  ["#part","#name","#model","#mail"].forEach(id=>$(id).value="");
+  toast("작업 요청이 등록되었습니다.");
+};
+
+$("#switch").onclick=()=>{
+  let w=$("#role").textContent==="작업 수행자",l=w?"작업 요청자":"작업 수행자";
+  $("#role").textContent=l;$("#badge").textContent=l;$("#switch").textContent=w?"작업 수행자로 보기":"작업 요청자로 보기";
+  toast(l+" 화면으로 전환되었습니다.");
+};
+
+$$(".statusSelect").forEach(s=>s.onchange=()=>toast("진행 상태가 '"+s.value+"'로 변경되었습니다."));
+$$(".wi input[type=date]").forEach(x=>x.onchange=()=>toast("예상 완료일이 수정되었습니다."));
+
+function bindMulti(inputId,countId,message){
+  const el=$("#"+inputId); if(!el)return;
+  el.onchange=e=>{const n=e.target.files.length;$("#"+countId).textContent=n+"개 선택";if(n)toast(message+" "+n+"개 파일을 선택했습니다.");};
+}
+bindMulti("workFiles1","workCount1","123456-100001 산출물");
+bindMulti("workFiles2","workCount2","123456-100002 산출물");
+bindMulti("revInput1","revCount1","123456-100001 수정본");
+bindMulti("revInput2","revCount2","123456-100004 수정본");
+
+$$(".upload").forEach(x=>x.onclick=()=>{
+  const id=x.dataset.target;
+  if(id){const input=$("#"+id);input.click();return;}
+  go("outputs");toast("산출물 관리 화면으로 이동했습니다.");
+});
+
+$$(".permBtn").forEach(x=>x.onclick=()=>toast("역할별 권한 관리 화면입니다."));
+
+const d=new Date(),f=x=>String(x).padStart(2,"0");
+$("#req").value=`${d.getFullYear()}-${f(d.getMonth()+1)}-${f(d.getDate())}`;
+let du=new Date(d.getTime()+604800000);
+$("#due").value=`${du.getFullYear()}-${f(du.getMonth()+1)}-${f(du.getDate())}`;
+render();
+
+setInterval(()=>$$(".ki").forEach((x,i)=>x.animate([{transform:"translateY(0)"},{transform:"translateY(-4px) rotate(3deg)"},{transform:"translateY(0)"}],{duration:850,delay:i*100})),5000);
+</script>
+</body>
+</html>
